@@ -28,10 +28,11 @@ Windows kullanıcıları için süreç tamamen otomatikleştirilmiştir. Harici 
 2. **İndiriciyi Başlatın:** Çıkarttığınız klasördeki **`Download-Game.cmd`** dosyasına çift tıklayın.
    - Bu betik, [Full Game v1 Sürümü](https://github.com/alihammoud21/playgta5/releases/tag/full-game-v1) üzerinden 14 arşiv parçasını sırayla indirir.
    - Her parçanın SHA-256 sağlama toplamını doğrular, dosyaları ayıklar ve taşınabilir Python ortamını hazırlar.
+   - Oyun dosyaları, indirme aracının bulunduğu klasörle çakışmayı önlemek için otomatik olarak `game` alt klasörüne kurulur. İndirilen arşiv önbelleği indirme aracının klasöründe tutulur.
    - İndirilen arşiv parçaları ayıklandıktan sonra otomatik olarak silinir, böylece disk alanı tasarrufu sağlanır.
    - Ekranda yeşil renkli **"Download complete"** yazısını görene kadar pencereyi kapatmayın.
    - Bağlantı koparsa veya indirme yarıda kalırsa, dosyayı tekrar çalıştırmanız yeterlidir; tamamlanan kısımlar korunur ve indirme kaldığı yerden devam eder.
-3. **Oyunu Başlatın:** Kurulum bittiğinde **`Launch-Local.cmd`** dosyasına çift tıklayın. Oyunu oynadığınız süre boyunca açılan sunucu penceresini kapatmayın.
+3. **Oyunu Başlatın:** Kurulum bittiğinde `game` klasöründeki **`Launch-Local.cmd`** dosyasına çift tıklayın. Oyunu oynadığınız süre boyunca açılan sunucu penceresini kapatmayın.
 4. **Tarayıcıda Açın:** Varsayılan tarayıcınızda otomatik olarak **http://localhost:8000/** adresi açılacaktır.
    - Tarayıcınız otomatik açılmazsa, Google Chrome veya Microsoft Edge adres çubuğuna bu adresi manuel olarak yapıştırın.
    - Açılan ana menüden **Story Mode** (Hikaye Modu) veya **Sandbox Mode** (Serbest Gezinti Modu) seçeneğini belirleyin.
@@ -110,7 +111,7 @@ Kurulum sonrasında veya oyun açılırken herhangi bir eksik dosya hatası alı
 
 - **`Verify-Game.cmd`** dosyasına çift tıklayın.
 
-Bu araç, `verify_game.py` betiğini çalıştırarak kurulan tüm dosyaları `file-inventory.json` içerisindeki resmi SHA-256 sağlama toplamları ile karşılaştırır. Disk üzerindeki yaklaşık 21 GB veriyi tek tek okuduğu için işlem diskinizin hızına bağlı olarak 2-5 dakika sürebilir.
+Otomatik kurulumda `game` klasöründeki **`Verify-Game.cmd`** dosyasını çalıştırın. Bu araç, `verify_game.py` betiğini çalıştırarak kurulan tüm dosyaları `file-inventory.json` içerisindeki resmi SHA-256 sağlama toplamları ile karşılaştırır. Disk üzerindeki yaklaşık 21 GB veriyi tek tek okuduğu için işlem diskinizin hızına bağlı olarak 2-5 dakika sürebilir.
 
 Ayrıca indirilen ZIP arşivlerinin sağlama toplamları depodaki `SHA256SUMS.txt` dosyasında mevcuttur.
 
@@ -152,7 +153,7 @@ Proje Linux ve macOS üzerinde de çalıştırılabilir:
 ## Sorun Giderme (Sık Karşılaşılan Hatalar)
 
 - **Beyaz Ekran / Eksik Sayfa (Missing Mirror):**
-  İndirme veya ayıklama işlemi eksik kalmış olabilir. 14 arşiv parçasının hepsinin indiğinden emin olun ve `Verify-Game.cmd` aracını çalıştırarak eksik dosyaları tespit edin.
+  İndirme veya ayıklama işlemi eksik kalmış olabilir. 14 arşiv parçasının hepsinin indiğinden emin olun ve otomatik kurulum için `game\Verify-Game.cmd` aracını çalıştırarak eksik dosyaları tespit edin.
 - **Port Çakışması ("Address already in use" - Hata 10048):**
   Bilgisayarınızda 8000 numaralı bağlantı noktasını başka bir program kullanıyor olabilir. İlgili programı kapatabilir veya sunucuyu farklı bir port üzerinden başlatabilirsiniz:
   ```cmd

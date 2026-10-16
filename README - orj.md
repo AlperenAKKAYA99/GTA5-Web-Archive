@@ -7,8 +7,8 @@ The game data is approximately **21.2 GB (19.7 GiB)**. It is included in the rep
 ## Download and play on Windows
 
 1. Click **Code → Download ZIP** on this page, then extract the ZIP completely. Or clone this repository.
-2. Double-click **`Download-Game.cmd`** in the extracted folder. It downloads every game archive from [the full-game release](https://github.com/alihammoud21/playgta5/releases/tag/full-game-v1), checks SHA-256 checksums, and extracts the complete mirror and bundled Python runtime. Keep the window open until it says **Download complete**. If interrupted, run it again to resume.
-3. Double-click **`Launch-Local.cmd`**. Keep its server window open while playing.
+2. Double-click **`Download-Game.cmd`** in the extracted folder. It downloads every game archive from [the full-game release](https://github.com/alihammoud21/playgta5/releases/tag/full-game-v1), checks SHA-256 checksums, and extracts the complete mirror and bundled Python runtime into a `game` subfolder so it does not conflict with the downloader files. The download cache stays in the extracted folder so interrupted downloads can resume. Keep the window open until it says **Download complete**.
+3. Double-click **`game\Launch-Local.cmd`**. Keep its server window open while playing.
 4. Your browser opens **http://localhost:8000/**. Choose **Story Mode** or **Sandbox Mode**. If the browser does not open automatically, paste that address into Chrome or Edge.
 5. Click the game to capture the mouse and enable sound. Press **Esc** to release the mouse. Close the server window when finished.
 
@@ -43,11 +43,11 @@ mirror/
     data/
 ```
 
-Double-click `Launch-Local.cmd`. Do not open `index.html` directly: WebGPU workers, cross-origin isolation, and game-data reads require the included HTTP server.
+Double-click `Launch-Local.cmd` inside the extracted game folder. Do not open `index.html` directly: WebGPU workers, cross-origin isolation, and game-data reads require the included HTTP server.
 
 ## Verify the files
 
-Double-click **`Verify-Game.cmd`** after installation. It compares every installed file with the published SHA-256 inventory. Verification reads about 21 GB and can take a few minutes. Release ZIP checksums are also listed in `SHA256SUMS.txt`.
+Double-click **`game\Verify-Game.cmd`** after automatic installation. It compares every installed file with the published SHA-256 inventory. Verification reads about 21 GB and can take a few minutes. Release ZIP checksums are also listed in `SHA256SUMS.txt`.
 
 The downloader does not overwrite existing files with different contents. If you have modified the game, download into a new empty folder instead.
 

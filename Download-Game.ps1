@@ -1,10 +1,11 @@
-param([string]$Destination = $PSScriptRoot)
+param([string]$Destination)
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 Add-Type -AssemblyName System.IO.Compression.FileSystem
+if ([string]::IsNullOrWhiteSpace($Destination)) { $Destination = Join-Path $PSScriptRoot 'game' }
 $installRoot = [IO.Path]::GetFullPath($Destination)
 New-Item -ItemType Directory -Force -Path $installRoot | Out-Null
-$downloadRoot = Join-Path $installRoot '.downloads'
+$downloadRoot = Join-Path $PSScriptRoot '.downloads'
 $receiptRoot = Join-Path $installRoot '.installed-parts'
 New-Item -ItemType Directory -Force -Path $downloadRoot,$receiptRoot | Out-Null
 $manifest = Get-Content -LiteralPath (Join-Path $PSScriptRoot 'download-manifest.json') -Raw | ConvertFrom-Json
